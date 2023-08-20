@@ -1,0 +1,52 @@
+
+nav {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+/* Conteudo nav esquerdo */
+
+#btn-mobile {
+    display: none;
+}
+
+.nav_left {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+#nav {
+    display: none;
+}
+
+.logo>img {
+    height: 60px;
+}
+
+.nav_left>a {
+    font-size: 1.2em;
+    margin: 20px;
+    color: var(--cor-fonte-text);
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ccc;
+}
+
+
+/* Conteudo nav direito */
+
+#fazer_login {
+    color: var(--cor-primaria);
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #55e5f6;
+    border-radius: 5px;
+}

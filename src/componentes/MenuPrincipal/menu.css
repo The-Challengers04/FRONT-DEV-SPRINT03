@@ -1,0 +1,22 @@
+.container01 {
+    padding: 40px;
+    background-color: #55e5f6;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container01 img {
+    margin: 40px;
+    width: 30%;
+}
+
+.container01 h1 {
+    font-weight: 400;
+    font-size: 3.8rem;
+    line-height: 75px;
+    text-align: center;
+    color: #ffffff;
+}
