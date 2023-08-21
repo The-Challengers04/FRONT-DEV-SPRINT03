@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import Welcome from '../../imagens/welcome.png';
 
-export default function MenuPrincipal(){
+export default function MenuPrincipal(props){
 
 const Container = styled.div`
     padding: 40px;
-    background-color: #55e5f6;
+    background-color: ${props => props.background || 'var(--cor-primaria)'};
     width: 100%;
     display: flex;
     align-items: center;

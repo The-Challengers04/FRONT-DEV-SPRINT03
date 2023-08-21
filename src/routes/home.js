@@ -7,6 +7,9 @@ import Categorias from "../Uteis/DateCategorias";
 import Cupons from "../Uteis/DateCupons";
 import styled from "styled-components";
 import Footer from "../componentes/Footer";
+import NavBar from "../componentes/NavBar";
+import Welcome from '../imagens/welcome.png';
+
 
 function Home(){
 
@@ -20,9 +23,11 @@ function Home(){
 
     return(
         <div>
-            <MenuPrincipal/>
+            <NavBar/>
+            <MenuPrincipal
+                src={Welcome}
+            />
 
-            
             <Titulo Titulo="Busque por categorias: "/>
 
             <CardGrid>

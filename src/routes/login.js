@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Logo from '../imagens/logo_inclui+.png';
 import Input from "../componentes/Input";
 import { Link } from 'react-router-dom';
+// import ImageFundo from '../imagens/img-login-cad.jpg';
 
 export const Login = () =>{
 
@@ -11,7 +12,8 @@ const BoxLogin = styled.div`
 `;
 const ContainerLeft = styled.div`
     width: 50%;
-`;
+
+`
 const ContainerRigth = styled.div`
     width: 50%;
     z-index: 100;
@@ -41,12 +43,32 @@ const FormLogin = styled.form`
         padding: 30px 0px 30px 0px;
         color: var(--cor-fonte-text);
     }
+    .enviar {
+        margin: 20px auto 10px auto;
+        padding: 20px 60px;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: var(--cor-primaria);
+        color: #fff;
+        border: solid 1px #fff;
+        text-decoration: none;
+    
+    
+        &.enviar:hover {
+        color: var(--cor-primaria);
+        background-color: #fff;
+        border: solid 1px var(--cor-primaria);
+        transition: 0.2s linear;
+    }
+    
 `
 
     return( 
     <BoxLogin>
         <ContainerLeft>
         </ContainerLeft>
+            {/* <img src={ImageFundo} alt="Imagem de fundo"></img> */}
         <ContainerRigth>
             <CaixaForm>
                 <FormLogin action="">
@@ -66,7 +88,7 @@ const FormLogin = styled.form`
                         label="Senha"
 
                     />
-                    <Link className="enviar" href="../index.html">Entrar</Link>
+                    <Link className="enviar" to="/">Entrar</Link>
                      {/* <input type="submit" className="enviar" value="Entrar"/>  */}
                     <Link className="link2" to="/cadastro">Não tem cadastro? &gt; </Link>
                 </FormLogin>

@@ -1,20 +1,17 @@
 import './App.css';
-import NavBar from './componentes/NavBar';
-import Footer from './componentes/Footer';
 import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 
 import Home from './routes/home'; 
 import Empresa from './routes/empresa'; 
-import Viajem from './routes/viajem'; 
-import Sobre from './routes/sobre'; 
-import Perfil from './routes/perfil'; 
+import { Viajem } from './routes/viajem'; 
+import { Sobre } from './routes/sobre'; 
+import { Perfil } from './routes/perfil'; 
 import { Login } from './routes/login';
-import Cadastro from './routes/cadastro';
+import { Cadastro } from './routes/cadastro';
 
 function App() {
   return (
     <Router>
-      <NavBar/>
 
       {/* Rota para as páginas */}
       <Routes>
@@ -27,7 +24,6 @@ function App() {
         <Route path="/cadastro" element={<Cadastro/>}/>
       </Routes>
 
-      <Footer/>
     </Router>
   );
 }

@@ -2,6 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Input(props) {
+  const {
+    type = "text",
+    placeholder = "",
+    name = "",
+    id = "",
+    label = "",
+  } = props;
+
+  return (
+    <FormGroup className="formGroupInicial field">
+      <InputField
+        type={type}
+        className="form__field"
+        placeholder={placeholder}
+        name={name}
+        id={id}
+        required
+      />
+      <FormLabel htmlFor={id} className="form__label">
+        {label}
+      </FormLabel>
+    </FormGroup>
+  );
+};
+
 
     
 const FormGroup = styled.div`
@@ -63,21 +88,3 @@ const FormLabel = styled.label`
     font-size: 1rem;
     color: #383838b4;
 `;
-
-
-  return (
-    <FormGroup className="formGroupInicial field">
-      <InputField
-        type={props.type}
-        className="form__field"
-        placeholder={props.placeholder}
-        name={props.name}
-        id={props.id}
-        required
-      />
-      <FormLabel for={props.for} className="form__label">
-        {props.label}
-      </FormLabel>
-    </FormGroup>
-  );
-};
