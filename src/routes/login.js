@@ -7,6 +7,40 @@ import { Link } from 'react-router-dom';
 
 export const Login = () =>{
 
+    return( 
+    <BoxLogin>
+        <ContainerLeft>
+        </ContainerLeft>
+            {/* <img src={ImageFundo} alt="Imagem de fundo"></img> */}
+        <ContainerRigth>
+            <CaixaForm>
+                <FormLogin action="">
+                    <img alt="logo" src={Logo}/>
+                    <h1>Faça seu login</h1>
+                    <Input
+                        placeholder="email"
+                        name="email"
+                        for="email"
+                        label="Email"
+
+                    />
+                     <Input
+                        placeholder="password"
+                        name="password"
+                        for="password"
+                        label="Senha"
+
+                    />
+                    <Link className="enviar" to="/">Entrar</Link>
+                     {/* <input type="submit" className="enviar" value="Entrar"/>  */}
+                    <Link className="link2" to="/cadastro">Não tem cadastro? &gt; </Link>
+                </FormLogin>
+            </CaixaForm>
+        </ContainerRigth>
+    </BoxLogin>
+    )
+}
+
 const BoxLogin = styled.div`
     display: flex;
 `;
@@ -63,37 +97,3 @@ const FormLogin = styled.form`
     }
     
 `
-
-    return( 
-    <BoxLogin>
-        <ContainerLeft>
-        </ContainerLeft>
-            {/* <img src={ImageFundo} alt="Imagem de fundo"></img> */}
-        <ContainerRigth>
-            <CaixaForm>
-                <FormLogin action="">
-                    <img alt="logo" src={Logo}/>
-                    <h1>Faça seu login</h1>
-                    <Input
-                        placeholder="email"
-                        name="email"
-                        for="email"
-                        label="Email"
-
-                    />
-                     <Input
-                        placeholder="password"
-                        name="password"
-                        for="password"
-                        label="Senha"
-
-                    />
-                    <Link className="enviar" to="/">Entrar</Link>
-                     {/* <input type="submit" className="enviar" value="Entrar"/>  */}
-                    <Link className="link2" to="/cadastro">Não tem cadastro? &gt; </Link>
-                </FormLogin>
-            </CaixaForm>
-        </ContainerRigth>
-    </BoxLogin>
-    )
-}
