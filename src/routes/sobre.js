@@ -1,3 +1,7 @@
+import NavBar from "../componentes/NavBar"
+
 export const Sobre = () =>{
-    return <h1>Aqui é a pagina de Sobre</h1>
+    return (
+        <NavBar/>
+    )
 }

@@ -1,3 +1,7 @@
+import NavBar from "../componentes/NavBar"
+
 export const Perfil = () =>{
-    return <h1>Aqui é a pagina de perfil</h1>
+    return (
+        <NavBar/>
+        )
 }

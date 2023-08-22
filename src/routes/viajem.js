@@ -1,3 +1,7 @@
+import NavBar from "../componentes/NavBar"
+
 export const Viajem = () =>{
-    return <h1>Aqui é a pagina de Viajem</h1>
+    return (
+        <NavBar/>
+    )
 }

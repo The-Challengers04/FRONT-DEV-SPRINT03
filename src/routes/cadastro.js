@@ -1,87 +1,69 @@
 import React from "react";
-import styled from 'styled-components';
-import Logo from '../imagens/logo_inclui+.png';
+import styled from "styled-components";
+import Logo from "../imagens/logo_inclui+.png";
 import Input from "../componentes/Input";
-import { useState } from "react";
-import { secoes as secoesData } from '../Uteis/DataCadastro';
-// import ImageFundo from '../imagens/img-login-cad.jpg';
+import Titulo from "../componentes/Titulo";
 
-export const Cadastro = () =>{
-
-    const[numSecao, setNumSecao] = useState(0);
-
-    function avancarSecao(){
-        if(numSecao < secoesData.length -1){
-            setNumSecao(prevNumSecao => prevNumSecao + 1);
-        }
-    }
-
-    function voltarSecao(){
-        if(numSecao > 0 ){
-            setNumSecao(prevNumSecao => prevNumSecao - 1);
-        }
-    }
-
-
-    return( 
+export const Cadastro = () => {
+  return (
     <BoxLogin>
-        <ContainerLeft>
-        </ContainerLeft>
-            {/* <img src={ImageFundo} alt="Imagem de fundo"></img> */}
-        <ContainerRigth>
-            <CaixaForm>
-                <FormLogin action="">
-                    <img alt="logo" src={Logo}/>
+      <ContainerLeft></ContainerLeft>
+      <ContainerRigth>
+        <CaixaForm>
+          <FormLogin action="">
+            <img alt="logo" src={Logo} />
 
-                    <h1>{secoesData[numSecao]?.titulo}</h1>
+            <Titulo>Insira seus dados: </Titulo>
 
+            <Input placeholder="nome" name="name" for="name" label="Nome" />
+            <Input placeholder="email" name="email" for="email" label="Email" />
+            <Input
+              placeholder="numero"
+              name="number"
+              for="number"
+              label="Número"
+            />
+            <Input
+              placeholder="senha"
+              name="password"
+              for="password"
+              label="Senha"
+            />
+            <Input
+              placeholder="confirme senha"
+              name="confirmPassword"
+              for="confirmPassword"
+              label="Confirme Senha"
+            />
 
-                    {secoesData[numSecao]?.entradaTexto?.map(entrada =>(
-                        <Input
-                            label={entrada.label}
-                            placeholder={entrada.placeholder}
-                            key={entrada.id}
-                        />
-                    ))}
-
-
-                    {numSecao > 0 && (<button onClick={()=> voltarSecao()}
-                    className="voltar">
-                        Voltar
-                    </button>)}
-
-                    <button onClick={()=>avancarSecao()}
-                    className="avancar">
-                        Avançar 
-                    </button>
-
-                </FormLogin>
-            </CaixaForm>
-        </ContainerRigth>
+            <button className="botao" to="/login">
+              Fazer Login
+            </button>
+          </FormLogin>
+        </CaixaForm>
+      </ContainerRigth>
     </BoxLogin>
-    )
-}
-
+  );
+};
 
 const BoxLogin = styled.div`
-    display: flex;
+  display: flex;
 `;
 const ContainerLeft = styled.div`
-    width: 50%;
-
-`
+  width: 50%;
+`;
 const ContainerRigth = styled.div`
-    width: 50%;
-    z-index: 100;
-    height: 100vh;
-    background-color: white;
+  width: 50%;
+  z-index: 100;
+  height: 100vh;
+  background-color: white;
 `;
 const CaixaForm = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 `;
 const FormLogin = styled.form`
     width: 70%;
@@ -93,13 +75,7 @@ const FormLogin = styled.form`
         width: 10em;
         height: 8em;
     }
-    h1{
-        text-align: center;
-        font-size: 21px;
-        padding: 30px 0px 30px 0px;
-        color: var(--cor-fonte-text);
-    }
-    .voltar, .avancar {
+    .botao {
         margin: 20px auto 10px auto;
         padding: 20px 60px;
         text-transform: uppercase;
@@ -118,4 +94,4 @@ const FormLogin = styled.form`
         transition: 0.2s linear;
     }
     
-`
+`;
