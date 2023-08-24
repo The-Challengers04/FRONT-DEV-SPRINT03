@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 
-import Home from './routes/home'; 
+import { Home } from './routes/home'; 
 import Empresa from './routes/empresa'; 
 import { Viajem } from './routes/viajem'; 
 import { Sobre } from './routes/sobre'; 

@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import Welcome from '../../imagens/welcome.png';
 
 export default function MenuPrincipal(props){
+    return(
+        <Container>
+            <Texto>{props.texto}</Texto>
+            <Image src={Welcome} alt="Imagem de um time reunido"/> 
+        </Container>
+    )
+}
 
 const Container = styled.div`
     padding: 40px;
@@ -24,10 +31,3 @@ const Texto = styled.h1`
     text-align: center;
     color: #ffffff;
 ` 
-    return(
-        <Container>
-            <Texto>Seja bem-vindo ao Inclui+</Texto>
-            <Image src={Welcome} alt="Imagem de um time reunido"/> 
-        </Container>
-    )
-}

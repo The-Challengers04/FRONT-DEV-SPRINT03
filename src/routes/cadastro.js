@@ -13,7 +13,9 @@ export const Cadastro = () => {
           <FormLogin action="">
             <img alt="logo" src={Logo} />
 
-            <Titulo>Insira seus dados: </Titulo>
+            <Titulo 
+              titulo="Insira seus dados: " 
+            />
 
             <Input placeholder="nome" name="name" for="name" label="Nome" />
             <Input placeholder="email" name="email" for="email" label="Email" />

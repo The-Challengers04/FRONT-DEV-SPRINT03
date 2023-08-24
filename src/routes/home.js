@@ -11,24 +11,16 @@ import NavBar from "../componentes/NavBar";
 import Welcome from '../imagens/welcome.png';
 
 
-function Home(){
-
-    const CardGrid = styled.div`
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 50px;
-`;
-
+export function Home(){
     return(
         <div>
             <NavBar/>
             <MenuPrincipal
+                texto="Seja bem-vindo ao Inclui+"
                 src={Welcome}
             />
 
-            <Titulo Titulo="Busque por categorias: "/>
+            <Titulo titulo="Busque por categorias: "/>
 
             <CardGrid>
                 {Categorias.map((card, index)=>(
@@ -42,7 +34,7 @@ function Home(){
             </CardGrid>
 
             
-            <Titulo Titulo="Cupons em destaque!"/>
+            <Titulo titulo="Cupons em destaque!"/>
             <CardGrid>
                 {Cupons.map((card, index)=>(
                     <CardCupons
@@ -61,7 +53,11 @@ function Home(){
     )
 }
 
-
-
-export default Home;
+const CardGrid = styled.div`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+margin: 50px;
+`;
 

@@ -24,7 +24,7 @@ export default function NavBar(){
                 <Link to='/perfil' aria-label="Perfil">Perfil</Link>
             </div>
             <div className="nav_right">
-                <Link to='/login'><button id="fazer_login" aria-label="Fazer login">Login</button></Link>
+                <Link to='/login'><button id="fazer_login" aria-label="Fazer login">Entrar</button></Link>
             </div>
         </nav>
         </div>

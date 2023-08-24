@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default function Titulo(props) {
-  return <TituloSecao>{props.children}</TituloSecao>;
+  return <TituloSecao>{props.titulo}</TituloSecao>;
 }
 
 const TituloSecao = styled.h2`

@@ -2,6 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function CardCupons({imagem, subtitulo, legenda, paragrafo}){
+    return(
+        <Card>
+            <Image src={imagem} alt={legenda} width="200" height="300"/>
+            <BoxLegend>
+                <Subtitulo>{subtitulo}</Subtitulo>
+                <Paragrafo>{paragrafo}</Paragrafo>
+            </BoxLegend>
+        </Card>
+    );
+};
+
 
 const Card = styled.div`
     text-align: center;
@@ -36,13 +47,3 @@ const Subtitulo = styled.h2`
 const Paragrafo = styled.p`
     color: #767676;
 `
-    return(
-        <Card>
-            <Image src={imagem} alt={legenda} width="200" height="300"/>
-            <BoxLegend>
-                <Subtitulo>{subtitulo}</Subtitulo>
-                <Paragrafo>{paragrafo}</Paragrafo>
-            </BoxLegend>
-        </Card>
-    );
-};
