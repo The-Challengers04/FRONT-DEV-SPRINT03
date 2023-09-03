@@ -1,14 +1,14 @@
 
-nav {
+/* nav {
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
+} */
 
 
 /* Conteudo nav esquerdo */
-
+/* 
 #btn-mobile {
     display: none;
 }
@@ -21,13 +21,13 @@ nav {
 
 #nav {
     display: none;
-}
+} */
 
 .logo>img {
     height: 60px;
 }
 
-.nav_left>a {
+/* .nav_left>a {
     font-size: 1.2em;
     margin: 20px;
     color: var(--cor-fonte-text);
@@ -41,7 +41,7 @@ nav a:hover {
 
 /* Conteudo nav direito */
 
-#fazer_login {
+/* #fazer_login {
     color: var(--cor-primaria);
     padding: 10px 15px;
     font-size: 1em;
@@ -49,4 +49,4 @@ nav a:hover {
     background: #ffffff;
     border: 1px solid #55e5f6;
     border-radius: 5px;
-}
+}  */

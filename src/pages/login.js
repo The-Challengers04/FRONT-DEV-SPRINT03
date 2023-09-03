@@ -1,92 +1,85 @@
-import React from "react";
-import styled from "styled-components";
-import Logo from "../imgs/logo_inclui+.png";
-import Input from "../componentes/Input";
-import { Link } from "react-router-dom";
-// import ImageFundo from '../imgs/img-login-cad.jpg';
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
-export const Login = () => {
+export function Login() {
+	const [user, setUser] = useState("");
+	const [password, setPassword] = useState("");
+	const [errors, setErrors] = useState({});
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		const newErrors = {};
+
+		if (!user) {
+			newErrors.user = "O campo Nome de usuário ou Email é obrigatório.";
+		}
+
+		if (!password) {
+			newErrors.password = "O campo Senha é obrigatório.";
+		}
+
+		if (Object.keys(newErrors).length > 0) {
+			setErrors(newErrors);
+			return;
+		} else {
+			const userList = JSON.parse(localStorage.getItem("users")) || [];
+			const userObj = userList.find((u) => u.user === user || u.email === user);
+			if (!userObj) {
+				newErrors.user = "Usuário não encontrado.";
+				setErrors(newErrors);
+				return;
+			}
+			if (userObj.password !== password) {
+				newErrors.password = "Senha incorreta.";
+				setErrors(newErrors);
+				return;
+			}
+			localStorage.setItem("loggedUser", JSON.stringify(userObj));
+			// Se a autenticação for bem-sucedida, redirecione para a página inicial
+			window.location.href = "/";
+		}
+	};
+
 	return (
-		<BoxLogin>
-			<ContainerLeft></ContainerLeft>
-			{/* <img src={ImageFundo} alt="Imagem de fundo"></img> */}
-			<ContainerRigth>
-				<CaixaForm>
-					<FormLogin action="">
-						<img alt="logo" src={Logo} />
-						<h1>Faça seu login</h1>
-						<Input placeholder="email" name="email" for="email" label="Email" />
-						<Input
-							placeholder="password"
-							name="password"
-							for="password"
-							label="Senha"
-						/>
-						<Link className="enviar" to="/">
-							Entrar
-						</Link>
-						{/* <input type="submit" className="enviar" value="Entrar"/>  */}
-						<Link className="link2" to="/cadastro">
-							Não tem cadastro? &gt;{" "}
-						</Link>
-					</FormLogin>
-				</CaixaForm>
-			</ContainerRigth>
-		</BoxLogin>
+		<Form onSubmit={handleSubmit}>
+			<Form.Group controlId="user">
+				<Form.Label>Nome de usuário ou Email</Form.Label>
+				<Form.Control
+					type="text"
+					placeholder="Digite seu nome de usuário ou email"
+					value={user}
+					onChange={(e) => {
+						errors.user = null;
+						setUser(e.target.value);
+					}}
+					isInvalid={!!errors.user}
+				/>
+				<Form.Control.Feedback type="invalid">
+					{errors.user}
+				</Form.Control.Feedback>
+			</Form.Group>
+
+			<Form.Group controlId="password">
+				<Form.Label>Senha</Form.Label>
+				<Form.Control
+					type="password"
+					placeholder="Digite sua senha"
+					value={password}
+					onChange={(e) => {
+						errors.password = null;
+						setPassword(e.target.value);
+					}}
+					isInvalid={!!errors.password}
+				/>
+				<Form.Control.Feedback type="invalid">
+					{errors.password}
+				</Form.Control.Feedback>
+			</Form.Group>
+
+			<Button variant="primary" type="submit">
+				Entrar
+			</Button>
+		</Form>
 	);
-};
-
-const BoxLogin = styled.div`
-	display: flex;
-`;
-const ContainerLeft = styled.div`
-	width: 50%;
-`;
-const ContainerRigth = styled.div`
-	width: 50%;
-	z-index: 100;
-	height: 100vh;
-	background-color: white;
-`;
-const CaixaForm = styled.div`
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	height: 100%;
-`;
-const FormLogin = styled.form`
-	width: 70%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	img {
-		width: 10em;
-		height: 8em;
-	}
-	h1 {
-		text-align: center;
-		font-size: 21px;
-		padding: 30px 0px 30px 0px;
-		color: var(--cor-fonte-text);
-	}
-	.enviar {
-		margin: 20px auto 10px auto;
-		padding: 20px 60px;
-		text-transform: uppercase;
-		font-weight: bold;
-		cursor: pointer;
-		background-color: var(--cor-primaria);
-		color: #fff;
-		border: solid 1px #fff;
-		text-decoration: none;
-	}
-
-	&.enviar:hover {
-		color: var(--cor-primaria);
-		background-color: #fff;
-		border: solid 1px var(--cor-primaria);
-		transition: 0.2s linear;
-	}
-`;
+}

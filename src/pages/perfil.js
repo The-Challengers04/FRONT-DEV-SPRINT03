@@ -20,12 +20,12 @@ export const Perfil = () => {
 			<Title titulo="Minha conta" />
 
 			<CardGrid>
-				<ProfileCard subtitulo="Meus dados" icon={faListAlt} />
-				<ProfileCard subtitulo="Favoritos" icon={farHeart} />
-				<ProfileCard subtitulo="Sua loja" icon={faShoppingBasket} />
-				<ProfileCard subtitulo="Configurações" icon={farCog} />
-				<ProfileCard subtitulo="Segurança" icon={farShieldAlt} />
-				<ProfileCard subtitulo="Ajuda" icon={farQuestionCircle} />
+				<ProfileCard subtitle="Meus dados" icon={faListAlt} />
+				<ProfileCard subtitle="Favoritos" icon={farHeart} />
+				<ProfileCard subtitle="Sua loja" icon={faShoppingBasket} />
+				<ProfileCard subtitle="Configurações" icon={farCog} />
+				<ProfileCard subtitle="Segurança" icon={farShieldAlt} />
+				<ProfileCard subtitle="Ajuda" icon={farQuestionCircle} />
 			</CardGrid>
 			<Footer />
 		</div>
