@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./nav.css";
 
 function BasicExample() {
-	const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+	const loggedCustomer = JSON.parse(localStorage.getItem("loggedCustomer"));
 	return (
 		<Navbar expand="lg" className="bg-body-tertiary">
 			<Container>
@@ -16,20 +16,20 @@ function BasicExample() {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link href="empresa">Empresa</Nav.Link>
+						<Nav.Link href="company">Empresa</Nav.Link>
 						<Nav.Link href="places">Viagem</Nav.Link>
-						<Nav.Link href="sobre">Sobre</Nav.Link>
+						<Nav.Link href="about">Sobre</Nav.Link>
 					</Nav>
 					<Nav>
 						{/* // Se não tiver um usuario logado, deve apresentar um botão para logar
 							// Se ja estiver logado, deve aparece o botao de perfil */}
-						{loggedUser ? (
-							<Link to="/perfil" className="nav-link">
+						{loggedCustomer ? (
+							<Link to="/profile" className="nav-link">
 								{/* // Quero que seja um botao */}
 								<button className="btn btn-primary">Perfil</button>
 							</Link>
 						) : (
-							<Link to="/login" className="nav-link">
+							<Link to="/customer/login" className="nav-link">
 								<button className="btn btn-primary">Entrar</button>
 							</Link>
 						)}

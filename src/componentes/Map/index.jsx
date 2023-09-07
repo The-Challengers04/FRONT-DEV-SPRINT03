@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
 	GoogleMap,
 	LoadScript,
@@ -19,12 +19,6 @@ const center = {
 
 function Mapa() {
 	const [selectedLocal, setSelectedLocal] = useState(null);
-
-	// useEffect(() => {
-	// 	// Recuperar locais do localStorage (substitua com seus próprios dados)
-	// 	const locaisSalvos = JSON.parse(localStorage.getItem("locais")) || [];
-	// 	setLocais(locaisSalvos);
-	// }, []);
 
 	return (
 		<LoadScript googleMapsApiKey="AIzaSyArKcLdE7PuHU_ylcu0tBkpI8bm39aeDY8">

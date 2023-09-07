@@ -1,7 +1,7 @@
 import NavBar from "../componentes/NavBar";
 import Map from "../componentes/Map";
 
-const Places = () => {
+export const Places = () => {
 	return (
 		<>
 			<NavBar />
@@ -9,5 +9,3 @@ const Places = () => {
 		</>
 	);
 };
-
-export default Places;

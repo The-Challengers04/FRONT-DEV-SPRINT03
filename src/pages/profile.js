@@ -7,12 +7,9 @@ import {
 	faListAlt,
 	faHeart as farHeart,
 	faShoppingBasket,
-	faCog as farCog,
-	faShieldAlt as farShieldAlt,
-	faQuestionCircle as farQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Perfil = () => {
+export const Profile = () => {
 	return (
 		<div>
 			<NavBar />
@@ -22,10 +19,7 @@ export const Perfil = () => {
 			<CardGrid>
 				<ProfileCard subtitle="Meus dados" icon={faListAlt} />
 				<ProfileCard subtitle="Favoritos" icon={farHeart} />
-				<ProfileCard subtitle="Sua loja" icon={faShoppingBasket} />
-				<ProfileCard subtitle="Configurações" icon={farCog} />
-				<ProfileCard subtitle="Segurança" icon={farShieldAlt} />
-				<ProfileCard subtitle="Ajuda" icon={farQuestionCircle} />
+				<ProfileCard subtitle="Direitos resgatados" icon={faShoppingBasket} />
 			</CardGrid>
 			<Footer />
 		</div>
