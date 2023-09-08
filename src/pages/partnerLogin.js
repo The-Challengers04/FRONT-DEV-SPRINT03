@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 export function PartnerLogin() {
-	const [user, setUser] = useState("");
+	const [partnerName, setPartnerName] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState({});
 
@@ -11,8 +11,8 @@ export function PartnerLogin() {
 
 		const newErrors = {};
 
-		if (!user) {
-			newErrors.user = "O campo de Usuário é obrigatório.";
+		if (!partnerName) {
+			newErrors.partnerName = "O campo de nome do parceiro é obrigatório.";
 		}
 
 		if (!password) {
@@ -24,9 +24,9 @@ export function PartnerLogin() {
 			return;
 		} else {
 			const partnerList = JSON.parse(localStorage.getItem("partners")) || [];
-			const partnerObj = partnerList.find((p) => p.user === user);
+			const partnerObj = partnerList.find((p) => p.partnerName === partnerName);
 			if (!partnerObj) {
-				newErrors.user = "Parceiro não encontrado.";
+				newErrors.partnerName = "Parceiro não encontrado.";
 				setErrors(newErrors);
 				return;
 			}
@@ -44,20 +44,20 @@ export function PartnerLogin() {
 	return (
 		<>
 			<Form onSubmit={handleSubmit}>
-				<Form.Group controlId="user">
-					<Form.Label>Nome de usuário ou Email</Form.Label>
+				<Form.Group controlId="partnerName">
+					<Form.Label>Nome do parceiro</Form.Label>
 					<Form.Control
 						type="text"
-						placeholder="Digite seu nome de usuário ou email"
-						value={user}
+						placeholder="Digite seu nome de parceiro"
+						value={partnerName}
 						onChange={(e) => {
-							errors.user = null;
-							setUser(e.target.value);
+							errors.partnerName = null;
+							setPartnerName(e.target.value);
 						}}
-						isInvalid={!!errors.user}
+						isInvalid={!!errors.partnerName}
 					/>
 					<Form.Control.Feedback type="invalid">
-						{errors.user}
+						{errors.partnerName}
 					</Form.Control.Feedback>
 				</Form.Group>
 
