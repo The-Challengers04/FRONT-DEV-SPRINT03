@@ -1,31 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	GoogleMap,
 	LoadScript,
-	Marker,
+	MarkerF,
 	InfoWindow,
 } from "@react-google-maps/api";
 import locais from "../../mocks/Places.mock";
 
-const containerStyle = {
-	width: "90%",
-	height: "500px",
-};
-
-const center = {
-	lat: -23.5505, // Latitude de São Paulo
-	lng: -46.6333, // Longitude de São Paulo
-};
-
 function Mapa() {
 	const [selectedLocal, setSelectedLocal] = useState(null);
+	const [pontosSelecionados, setPontosSelecionados] = useState([]);
+
+	const containerStyle = {
+		width: "90%",
+		height: "500px",
+	};
+
+	const center = {
+		lat: -23.5505, // Latitude de São Paulo
+		lng: -46.6333, // Longitude de São Paulo
+	};
+
+	useEffect(() => {
+		setPontosSelecionados(locais);
+	}, []);
 
 	return (
 		<LoadScript googleMapsApiKey="AIzaSyArKcLdE7PuHU_ylcu0tBkpI8bm39aeDY8">
-			<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={9}>
-				{locais.map((local, index) => (
-					<Marker
-						key={index}
+			<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
+				{pontosSelecionados.map((local) => (
+					<MarkerF
+						key={local.id}
 						position={{ lat: local.latitude, lng: local.longitude }}
 						onClick={() => {
 							setSelectedLocal(local);

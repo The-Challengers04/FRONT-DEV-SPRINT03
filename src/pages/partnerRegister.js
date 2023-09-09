@@ -6,6 +6,48 @@ function isValidEmail(email) {
 	return emailPattern.test(email);
 }
 
+const InputComponent = ({
+	controlId,
+	Label,
+	type,
+	placeholder,
+	value,
+	setValue,
+	error,
+}) => {
+	return (
+		<Form.Group controlId={controlId}>
+			<Form.Label>{Label}</Form.Label>
+			<Form.Control
+				type={type}
+				placeholder={placeholder}
+				value={value}
+				onChange={(e) => {
+					error = null;
+					setValue(e.target.value);
+				}}
+				isInvalid={!!error}
+			/>
+			<Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+		</Form.Group>
+	);
+};
+
+const CheckBoxComponent = ({ label, value, setValue }) => {
+	return (
+		<Form.Group controlId="formBasicCheckbox">
+			<Form.Check
+				type="checkbox"
+				label={label}
+				value={value}
+				onChange={(e) => {
+					setValue(e.target.value);
+				}}
+			/>
+		</Form.Group>
+	);
+};
+
 export function PartnerRegister() {
 	const [email, setEmail] = useState("");
 	const [partnerName, setPartnerName] = useState("");
@@ -22,11 +64,15 @@ export function PartnerRegister() {
 	const [city, setCity] = useState("");
 	const [state, setState] = useState("");
 
+	const [ramp, setRamp] = useState(false);
+	const [elevator, setElevator] = useState(false);
+	const [braileMaterial, setBraileMaterial] = useState(false);
+	const [accessibleRestrooms, setAccessibleRestrooms] = useState(false);
+	const [accessibleParking, setAccessibleParking] = useState(false);
+
 	const [errors, setErrors] = useState({});
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
+	const validateFields = () => {
 		// Validação dos campos
 		const validationErrors = {};
 
@@ -59,13 +105,12 @@ export function PartnerRegister() {
 			validationErrors.state = "Campo obrigatório";
 		}
 
-		console.log(validationErrors);
-		console.log(errors);
-
 		if (Object.keys(validationErrors).length > 0) {
-			return setErrors(validationErrors);
+			setErrors(validationErrors);
 		}
+	};
 
+	const getCoordinatesOfAddress = async () => {
 		try {
 			const response = await fetch(
 				`https://maps.googleapis.com/maps/api/geocode/json?address=${cep},${neighborhood},${street},${number},${complement},${city},${state}&key=AIzaSyArKcLdE7PuHU_ylcu0tBkpI8bm39aeDY8`
@@ -80,20 +125,7 @@ export function PartnerRegister() {
 
 					const { lat, lng } = location;
 
-					const partnerData = {
-						partnerName,
-						email,
-						partnerPlan,
-						password,
-						lat,
-						lng,
-					};
-					const partnerList =
-						JSON.parse(localStorage.getItem("partners")) || [];
-					partnerList.push(partnerData);
-					localStorage.setItem("partners", JSON.stringify(partnerList));
-
-					window.location.href = "/partner/login";
+					return { lat, lng };
 				} else {
 					console.error("Erro na busca de coordenadas");
 				}
@@ -105,41 +137,61 @@ export function PartnerRegister() {
 		}
 	};
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		validateFields();
+
+		if (Object.keys(errors).length > 0) {
+			return;
+		}
+
+		const { lat, lng } = await getCoordinatesOfAddress();
+
+		const partnerData = {
+			partnerName,
+			email,
+			partnerPlan,
+			password,
+			lat,
+			lng,
+			accessibility: {
+				ramp,
+				elevator,
+				braileMaterial,
+				accessibleRestrooms,
+				accessibleParking,
+			},
+		};
+
+		const partnerList = JSON.parse(localStorage.getItem("partners")) || [];
+		partnerList.push(partnerData);
+		localStorage.setItem("partners", JSON.stringify(partnerList));
+
+		window.location.href = "/partner/login";
+	};
+
 	return (
 		<>
 			<Form onSubmit={handleSubmit}>
-				<Form.Group controlId="PartnerName">
-					<Form.Label>Nome do Parceiro</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Nome do Parceiro"
-						value={partnerName}
-						onChange={(e) => {
-							errors.partnerName = null;
-							setPartnerName(e.target.value);
-						}}
-						isInvalid={!!errors.partnerName}
-					/>
-					<Form.Control.Feedback type="invalid">
-						{errors.partnerName}
-					</Form.Control.Feedback>
-				</Form.Group>
-				<Form.Group controlId="email">
-					<Form.Label>Email</Form.Label>
-					<Form.Control
-						type="email"
-						placeholder="Digite seu email"
-						value={email}
-						onChange={(e) => {
-							errors.email = null;
-							setEmail(e.target.value);
-						}}
-						isInvalid={!!errors.email}
-					/>
-					<Form.Control.Feedback type="invalid">
-						{errors.email}
-					</Form.Control.Feedback>
-				</Form.Group>
+				<InputComponent
+					controlId="PartnerName"
+					Label="Nome do Parceiro"
+					type="text"
+					placeholder="Nome do Parceiro"
+					value={partnerName}
+					setValue={setPartnerName}
+					error={errors.partnerName}
+				/>
+				<InputComponent
+					controlId="email"
+					Label="Email"
+					type="email"
+					placeholder="Digite seu email"
+					value={email}
+					setValue={setEmail}
+					error={errors.email}
+				/>
 				<Form.Group controlId="partnerPlan">
 					<Form.Label>Plano</Form.Label>
 					<Form.Select
@@ -153,38 +205,24 @@ export function PartnerRegister() {
 						<option value="2">Premium</option>
 					</Form.Select>
 				</Form.Group>
-				<Form.Group controlId="password">
-					<Form.Label>Senha</Form.Label>
-					<Form.Control
-						type="password"
-						placeholder="Digite sua senha"
-						value={password}
-						onChange={(e) => {
-							errors.password = null;
-							setPassword(e.target.value);
-						}}
-						isInvalid={!!errors.password}
-					/>
-					<Form.Control.Feedback type="invalid">
-						{errors.password}
-					</Form.Control.Feedback>
-				</Form.Group>
-				<Form.Group controlId="confirmPassword">
-					<Form.Label>Confirme a senha</Form.Label>
-					<Form.Control
-						type="password"
-						placeholder="Confirme sua senha"
-						value={confirmPassword}
-						onChange={(e) => {
-							errors.confirmPassword = null;
-							setConfirmPassword(e.target.value);
-						}}
-						isInvalid={!!errors.confirmPassword}
-					/>
-					<Form.Control.Feedback type="invalid">
-						{errors.confirmPassword}
-					</Form.Control.Feedback>
-				</Form.Group>
+				<InputComponent
+					controlId="password"
+					Label="Senha"
+					type="password"
+					placeholder="Digite sua senha"
+					value={password}
+					setValue={setPassword}
+					error={errors.password}
+				/>
+				<InputComponent
+					controlId="confirmPassword"
+					Label="Confirme a senha"
+					type="password"
+					placeholder="Confirme sua senha"
+					value={confirmPassword}
+					setValue={setConfirmPassword}
+					error={errors.confirmPassword}
+				/>
 				<Form.Group controlId="cep">
 					<Form.Label>CEP</Form.Label>
 					<Form.Control
@@ -201,109 +239,88 @@ export function PartnerRegister() {
 						{errors.cep}
 					</Form.Control.Feedback>
 				</Form.Group>
-				<Form.Group controlId="neighborhood">
-					<Form.Label>Bairro</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Digite o nome do bairro"
-						value={neighborhood}
-						onChange={(e) => {
-							errors.neighborhood = null;
-							setNeighborhood(e.target.value);
-						}}
-						isInvalid={!!errors.neighborhood}
-					/>
 
-					<Form.Control.Feedback type="invalid">
-						{errors.neighborhood}
-					</Form.Control.Feedback>
-				</Form.Group>
-				<Form.Group controlId="city">
-					<Form.Label>Cidade</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Digite o nome da cidade"
-						value={city}
-						onChange={(e) => {
-							errors.city = null;
-							setCity(e.target.value);
-						}}
-						isInvalid={!!errors.city}
-					/>
+				<InputComponent
+					controlId="neighborhood"
+					Label="Bairro"
+					type="text"
+					placeholder="Digite o nome do bairro"
+					value={neighborhood}
+					setValue={setNeighborhood}
+					error={errors.neighborhood}
+				/>
+				<InputComponent
+					controlId="city"
+					Label="Cidade"
+					type="text"
+					placeholder="Digite o nome da cidade"
+					value={city}
+					setValue={setCity}
+					error={errors.city}
+				/>
+				<InputComponent
+					controlId="state"
+					Label="Estado"
+					type="text"
+					placeholder="Digite o nome do estado"
+					value={state}
+					setValue={setState}
+					error={errors.state}
+				/>
+				<InputComponent
+					controlId="street"
+					Label="Rua"
+					type="text"
+					placeholder="Digite o nome da rua"
+					value={street}
+					setValue={setStreet}
+					error={errors.street}
+				/>
+				<InputComponent
+					controlId="number"
+					Label="Número"
+					type="text"
+					placeholder="Digite o número"
+					value={number}
+					setValue={setNumber}
+					error={errors.number}
+				/>
+				<InputComponent
+					controlId="complement"
+					Label="Complemento"
+					type="text"
+					placeholder="Digite o complemento"
+					value={complement}
+					setValue={setComplement}
+					error={errors.complement}
+				/>
 
-					<Form.Control.Feedback type="invalid">
-						{errors.city}
-					</Form.Control.Feedback>
-				</Form.Group>
-				<Form.Group controlId="state">
-					<Form.Label>Estado</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Digite o nome do estado"
-						value={state}
-						onChange={(e) => {
-							errors.state = null;
-							setState(e.target.value);
-						}}
-						isInvalid={!!errors.state}
-					/>
+				<CheckBoxComponent
+					label="Possui rampa de acesso?"
+					value={ramp}
+					setValue={setRamp}
+				/>
+				<CheckBoxComponent
+					label="Possui elevador?"
+					value={elevator}
+					setValue={setElevator}
+				/>
+				<CheckBoxComponent
+					label="Possui material em braile?"
+					value={braileMaterial}
+					setValue={setBraileMaterial}
+				/>
+				<CheckBoxComponent
+					label="Possui banheiros acessíveis?"
+					value={accessibleRestrooms}
+					setValue={setAccessibleRestrooms}
+				/>
+				<CheckBoxComponent
+					label="Possui estacionamento acessível?"
+					value={accessibleParking}
+					setValue={setAccessibleParking}
+				/>
 
-					<Form.Control.Feedback type="invalid">
-						{errors.state}
-					</Form.Control.Feedback>
-				</Form.Group>
-
-				<Form.Group controlId="street">
-					<Form.Label>Rua</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Digite o nome da rua"
-						value={street}
-						onChange={(e) => {
-							errors.street = null;
-							setStreet(e.target.value);
-						}}
-						isInvalid={!!errors.street}
-					/>
-
-					<Form.Control.Feedback type="invalid">
-						{errors.street}
-					</Form.Control.Feedback>
-				</Form.Group>
-				<Form.Group controlId="number">
-					<Form.Label>Número</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Digite o número"
-						value={number}
-						onChange={(e) => {
-							errors.number = null;
-							setNumber(e.target.value);
-						}}
-						isInvalid={!!errors.number}
-					/>
-
-					<Form.Control.Feedback type="invalid">
-						{errors.number}
-					</Form.Control.Feedback>
-				</Form.Group>
-				<Form.Group controlId="complement">
-					<Form.Label>Complemento</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Digite o complemento"
-						value={complement}
-						onChange={(e) => {
-							errors.complement = null;
-							setComplement(e.target.value);
-						}}
-						isInvalid={!!errors.complement}
-					/>
-
-					<Form.Control.Feedback type="invalid">
-						{errors.complement}
-					</Form.Control.Feedback>
-				</Form.Group>
 				<Button variant="primary" type="submit">
 					Enviar
 				</Button>
