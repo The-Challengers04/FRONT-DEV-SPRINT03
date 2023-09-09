@@ -24,6 +24,7 @@ export default function Empresa() {
 				</h1>
 				<img src={ImageTime} alt="Imagem de um time se ajudando" />
 			</Texto>
+			<a href="/partner/login">Ja possui uma Conta?</a>
 			<Footer />
 		</Container>
 	);
