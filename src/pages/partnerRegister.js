@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Form, Button } from "react-bootstrap";
 
 function isValidEmail(email) {
@@ -33,18 +33,17 @@ const InputComponent = ({
 	);
 };
 
-const CheckBoxComponent = ({ label, value, setValue }) => {
+const CheckBoxComponent = ({ label, value, setValue, id }) => {
 	return (
-		<Form.Group controlId="formBasicCheckbox">
-			<Form.Check
-				type="checkbox"
-				label={label}
-				value={value}
-				onChange={(e) => {
-					setValue(e.target.value);
-				}}
-			/>
-		</Form.Group>
+		<Form.Check
+			type="checkbox"
+			label={label}
+			value={value}
+			onChange={(e) => {
+				setValue(e.target.value);
+			}}
+			id={`formHorizontalCheckbox${id}`}
+		/>
 	);
 };
 
@@ -105,9 +104,7 @@ export function PartnerRegister() {
 			validationErrors.state = "Campo obrigatório";
 		}
 
-		if (Object.keys(validationErrors).length > 0) {
-			setErrors(validationErrors);
-		}
+		return validationErrors;
 	};
 
 	const getCoordinatesOfAddress = async () => {
@@ -140,9 +137,10 @@ export function PartnerRegister() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		validateFields();
+		const validationErrors = validateFields();
 
-		if (Object.keys(errors).length > 0) {
+		if (Object.keys(validationErrors).length > 0) {
+			setErrors(validationErrors);
 			return;
 		}
 
@@ -294,33 +292,38 @@ export function PartnerRegister() {
 					setValue={setComplement}
 					error={errors.complement}
 				/>
-
-				<CheckBoxComponent
-					label="Possui rampa de acesso?"
-					value={ramp}
-					setValue={setRamp}
-				/>
-				<CheckBoxComponent
-					label="Possui elevador?"
-					value={elevator}
-					setValue={setElevator}
-				/>
-				<CheckBoxComponent
-					label="Possui material em braile?"
-					value={braileMaterial}
-					setValue={setBraileMaterial}
-				/>
-				<CheckBoxComponent
-					label="Possui banheiros acessíveis?"
-					value={accessibleRestrooms}
-					setValue={setAccessibleRestrooms}
-				/>
-				<CheckBoxComponent
-					label="Possui estacionamento acessível?"
-					value={accessibleParking}
-					setValue={setAccessibleParking}
-				/>
-
+				<Form.Group controlId="formBasicCheckbox">
+					<CheckBoxComponent
+						label="Possui rampa de acesso?"
+						value={ramp}
+						setValue={setRamp}
+						id={1}
+					/>
+					<CheckBoxComponent
+						label="Possui elevador?"
+						value={elevator}
+						setValue={setElevator}
+						id={2}
+					/>
+					<CheckBoxComponent
+						label="Possui material em braile?"
+						value={braileMaterial}
+						setValue={setBraileMaterial}
+						id={3}
+					/>
+					<CheckBoxComponent
+						label="Possui banheiros acessíveis?"
+						value={accessibleRestrooms}
+						setValue={setAccessibleRestrooms}
+						id={4}
+					/>
+					<CheckBoxComponent
+						label="Possui estacionamento acessível?"
+						value={accessibleParking}
+						setValue={setAccessibleParking}
+						id={5}
+					/>
+				</Form.Group>
 				<Button variant="primary" type="submit">
 					Enviar
 				</Button>
