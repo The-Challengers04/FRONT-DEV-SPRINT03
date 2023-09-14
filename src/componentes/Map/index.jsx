@@ -65,7 +65,7 @@ const CheckBoxComponent = ({ label, value, setValue }) => {
 function Mapa() {
 	const { isLoaded } = useJsApiLoader({
 		id: "google-map-script",
-		googleMapsApiKey: "AIzaSyArKcLdE7PuHU_ylcu0tBkpI8bm39aeDY8",
+		googleMapsApiKey: "AIzaSyB5hUFsQW-iE8boD9b-TiRBfyXIOGGuITA",
 	});
 
 	const [selectedLocal, setSelectedLocal] = useState(null);
