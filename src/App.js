@@ -6,10 +6,8 @@ import Empresa from "./pages/empresa";
 import { Places } from "./pages/places";
 import { About } from "./pages/about";
 import { Profile } from "./pages/profile";
-import { CustomerLogin } from "./pages/customerLogin";
-import { CustomerRegister } from "./pages/customerRegister";
-import { PartnerLogin } from "./pages/partnerLogin";
-import { PartnerRegister } from "./pages/partnerRegister";
+import { Login } from "./pages/login";
+import { Register } from "./pages/register";
 import VLibras from "@djpfs/react-vlibras";
 
 function App() {
@@ -24,10 +22,8 @@ function App() {
 					<Route path="/places" element={<Places />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/profile" element={<Profile />} />
-					<Route path="/customer/login" element={<CustomerLogin />} />
-					<Route path="/customer/register" element={<CustomerRegister />} />
-					<Route path="/partner/login" element={<PartnerLogin />} />
-					<Route path="/partner/register" element={<PartnerRegister />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
 				</Routes>
 			</Router>
 		</div>

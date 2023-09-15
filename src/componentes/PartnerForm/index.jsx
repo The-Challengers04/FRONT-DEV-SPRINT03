@@ -34,7 +34,7 @@ function PartnerForms({
 }) {
 	const [email, setEmail] = useState(emailValue || "");
 	const [partnerName, setPartnerName] = useState(partnerNameValue || "");
-	const [partnerPlan, setPartnerPlan] = useState(partnerPlanValue || "");
+	const [partnerPlan, setPartnerPlan] = useState(partnerPlanValue || "Básico");
 	const [password, setPassword] = useState(passwordValue || "");
 	const [confirmPassword, setConfirmPassword] = useState(
 		confirmPasswordValue || ""
@@ -105,6 +105,30 @@ function PartnerForms({
 		state,
 	]);
 
+	const isEmailAvailable = (emailAlreadyBeingUsing) => {
+		const customers = JSON.parse(localStorage.getItem("customers")) || [];
+		const customerObj = customers.find((c) => c.email === email);
+		if (!!customerObj) {
+			if (
+				!!emailAlreadyBeingUsing &&
+				customerObj.email === emailAlreadyBeingUsing
+			)
+				return true;
+			return false;
+		}
+		const partners = JSON.parse(localStorage.getItem("partners")) || [];
+		const partnerObj = partners.find((p) => p.email === email);
+		if (!!partnerObj) {
+			if (
+				!!emailAlreadyBeingUsing &&
+				partnerObj.email === emailAlreadyBeingUsing
+			)
+				return true;
+			return false;
+		}
+		return true;
+	};
+
 	const validateFields = () => {
 		let isValid = true;
 		// Validação dos campos
@@ -116,13 +140,9 @@ function PartnerForms({
 			setErrorToEntity("email", "Email inválido");
 			isValid = false;
 		} else {
-			const partners = JSON.parse(localStorage.getItem("partners"));
-			if (partners) {
-				const partner = partners.find((partner) => partner.email === email);
-				if (partner.email !== emailValue) {
-					setErrorToEntity("email", "Email já cadastrado");
-					isValid = false;
-				}
+			if (!isEmailAvailable(emailValue)) {
+				setErrorToEntity("email", "Email já cadastrado");
+				isValid = false;
 			}
 		}
 		// Validação da senha
@@ -271,8 +291,8 @@ function PartnerForms({
 					entity={partnerPlan}
 					setEntity={setPartnerPlan}
 					options={[
-						{ value: "1", label: "Básico" },
-						{ value: "2", label: "Premium" },
+						{ value: "Básico", label: "Básico" },
+						{ value: "Premium", label: "Premium" },
 					]}
 				/>
 				<Input
@@ -412,8 +432,6 @@ function PartnerForms({
 					Enviar
 				</Button>
 			</Form>
-			<a href="/partner/login">Já é um parceiro?</a> <br />
-			<a href="/">Ir para Home</a>
 		</>
 	);
 }

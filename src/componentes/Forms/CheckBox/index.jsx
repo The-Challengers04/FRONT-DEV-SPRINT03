@@ -6,9 +6,9 @@ const CheckBoxComponent = ({ label, value, setValue, id }) => {
 		<Form.Check
 			type="checkbox"
 			label={label}
-			value={value}
+			checked={value}
 			onChange={(e) => {
-				setValue(e.target.value);
+				setValue(!value);
 			}}
 			id={`formHorizontalCheckbox${id}`}
 		/>
