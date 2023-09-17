@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Form, Button } from "react-bootstrap";
 import { CheckBox, Input, Select } from "../Forms";
+import { ButtonLogin } from "../../componentes/Buttons";
 
 function isValidEmail(email) {
 	var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -262,8 +263,8 @@ function PartnerForms({
 
 	return (
 		<>
-			<Form onSubmit={handleSubmit}>
-				<Input
+			<Form onSubmit={handleSubmit} style={{ width: "50%" }}>
+				<Input 
 					controlId="PartnerName"
 					label="Nome do Parceiro"
 					type="text"
@@ -273,6 +274,7 @@ function PartnerForms({
 					errorList={errors}
 					setErrorList={setErrors}
 					errorName={"partnerName"}
+					
 				/>
 				<Input
 					controlId="email"
@@ -318,7 +320,7 @@ function PartnerForms({
 					errorName={"confirmPassword"}
 				/>
 
-				<Input
+<Input
 					controlId="cep"
 					label="CEP"
 					type="number"
@@ -428,9 +430,9 @@ function PartnerForms({
 						id={5}
 					/>
 				</Form.Group>
-				<Button variant="primary" type="submit">
+				<ButtonLogin variant="primary" type="submit">
 					Enviar
-				</Button>
+				</ButtonLogin>
 			</Form>
 		</>
 	);

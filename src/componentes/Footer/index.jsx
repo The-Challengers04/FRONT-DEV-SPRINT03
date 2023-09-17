@@ -11,11 +11,10 @@ export default function Footer() {
 				<S.Section>
 					<S.Text>Navegação</S.Text>
 					<S.Ul>
-						<S.Li>Página inicial</S.Li>
-						<S.Li>Empresa</S.Li>
-						<S.Li>Descontos</S.Li>
-						<S.Li>Viajem</S.Li>
-						<S.Li>Sobre</S.Li>
+						<S.Li ><a href="/">Página inicial</a></S.Li>
+						<S.Li > <a href="company"> Empresa </a> </S.Li>
+						<S.Li > <a href="places"> Viajem </a></S.Li>
+						<S.Li > <a href="about"> Sobre </a></S.Li>
 					</S.Ul>
 				</S.Section>
 				<S.Section>

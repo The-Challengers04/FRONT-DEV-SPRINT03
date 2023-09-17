@@ -3,12 +3,28 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../../imgs/logo_inclui+.png";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import "./nav.css";
+
+const ButtonLogin = styled.button`
+color: #55e5f6;
+padding: 7px 15px;
+font-size: 1.1em;
+cursor: pointer;
+background: #FFFFFF;
+border: 2px solid #55E5F6;
+border-radius: 5px;
+&:hover {
+	background: #55e5f6;
+	color: #FFFFFF;
+  }
+`;
+
 
 function BasicExample() {
 	const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 	return (
-		<Navbar expand="lg" className="bg-body-tertiary">
+		<Navbar expand="lg" className="bg-body">
 			<Container>
 				<Link to="/" className="logo">
 					<img src={Logo} alt="Logo do Site" />
@@ -16,6 +32,7 @@ function BasicExample() {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
+						<Nav.Link href="/">Inicio</Nav.Link>
 						<Nav.Link href="company">Empresa</Nav.Link>
 						<Nav.Link href="places">Viagem</Nav.Link>
 						<Nav.Link href="about">Sobre</Nav.Link>
@@ -26,11 +43,11 @@ function BasicExample() {
 						{loggedUser ? (
 							<Link to="/profile" className="nav-link">
 								{/* // Quero que seja um botao */}
-								<button className="btn btn-primary">Perfil</button>
+								<ButtonLogin className="btn">Perfil</ButtonLogin>
 							</Link>
 						) : (
 							<Link to="/login" className="nav-link">
-								<button className="btn btn-primary">Entrar</button>
+								<ButtonLogin className="btn">Entrar</ButtonLogin>
 							</Link>
 						)}
 					</Nav>

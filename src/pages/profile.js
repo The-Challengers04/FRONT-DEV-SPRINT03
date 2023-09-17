@@ -3,6 +3,8 @@ import NavBar from "../componentes/NavBar";
 import Title from "../componentes/Title";
 import PartnerForm from "../componentes/PartnerForm";
 import CustomerForm from "../componentes/CustomerForm";
+import { Container } from "../componentes/Forms/Container";
+import { ButtonLogin } from "../componentes/Buttons";
 
 export const Profile = () => {
 	const loggedUser = JSON.parse(localStorage.getItem("loggedUser")) || {};
@@ -42,7 +44,7 @@ export const Profile = () => {
 	return (
 		<div>
 			<NavBar />
-
+			<Container>
 			<Title titulo="Minha conta" />
 			{loggedUser.type === "Partner" ? (
 				<PartnerForm
@@ -77,7 +79,8 @@ export const Profile = () => {
 					}}
 				/>
 			)}
-			<button onClick={logOut}>Sair</button>
+			<ButtonLogin onClick={logOut}>Sair</ButtonLogin>
+			</Container>
 			<Footer />
 		</div>
 	);

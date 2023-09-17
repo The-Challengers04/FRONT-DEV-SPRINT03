@@ -1,5 +1,7 @@
 import React, { memo } from "react";
 import { Form } from "react-bootstrap";
+import styled from "styled-components";
+
 
 const InputComponent = ({
 	controlId,
@@ -18,6 +20,7 @@ const InputComponent = ({
 	let error;
 	if (treatError) error = errorList[errorName];
 	return (
+
 		<Form.Group controlId={controlId}>
 			<Form.Label>{label}</Form.Label>
 			<Form.Control
@@ -44,8 +47,11 @@ const InputComponent = ({
 				isInvalid={!!error}
 			/>
 			<Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+			<br/>
 		</Form.Group>
+
 	);
 };
 
 export default memo(InputComponent);
+

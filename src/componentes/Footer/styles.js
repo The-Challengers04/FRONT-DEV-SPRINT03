@@ -31,6 +31,10 @@ export const Li = styled.li`
 	margin-bottom: 5px;
 	color: var(--cor-fonte-text);
 	text-decoration: none;
+	a{
+		color: var(--cor-fonte-text);
+		text-decoration: none;
+	}
 `;
 export const Copy = styled.div`
 	text-align: center;

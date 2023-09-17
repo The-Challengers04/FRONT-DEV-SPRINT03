@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Input } from "../Forms";
 import { Form, Button } from "react-bootstrap";
+import { ButtonLogin } from "../../componentes/Buttons";
 
 function isValidEmail(email) {
 	var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -102,7 +103,7 @@ export default function CustomerForm({
 
 	return (
 		<>
-			<Form onSubmit={handleSubmit}>
+			<Form onSubmit={handleSubmit} style={{ width: "50%" }}>
 				<Input
 					controlId="firstName"
 					label="Nome"
@@ -158,10 +159,9 @@ export default function CustomerForm({
 					setErrorList={setErrors}
 					errorName={"confirmPassword"}
 				/>
-
-				<Button variant="primary" type="submit">
+				<ButtonLogin variant="primary" type="submit">
 					Enviar
-				</Button>
+				</ButtonLogin>
 			</Form>
 		</>
 	);
