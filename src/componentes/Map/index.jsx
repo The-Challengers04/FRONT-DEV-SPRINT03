@@ -12,7 +12,7 @@ import Card from "react-bootstrap/Card";
 
 const containerStyle = {
 	width: "100%",
-	height: "90vh"
+	height: "90vh",
 };
 
 const center = {
@@ -63,6 +63,59 @@ const CheckBoxComponent = ({ label, value, setValue }) => {
 	);
 };
 
+const SwitchInput = styled.input`
+	appearance: none;
+	width: 2em;
+	height: 1em;
+	background-color: #707070;
+	border-radius: 50px;
+	position: relative;
+	cursor: pointer;
+	transition: 0.5ms;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 1em;
+		height: 1em;
+		background-color: #d5d5d5;
+		border-radius: 50%;
+		transition: 0.5s;
+	}
+
+	&:checked {
+		background: #55e5f6;
+	}
+	&:checked:before {
+		content: "";
+		position: absolute;
+		transition: 0.5s;
+		left: calc(100% - 1em);
+		background: #777777;
+	}
+`;
+
+const SwitchLabel = styled.label`
+	position: relative;
+	display: inline-block;
+	margin-left: 0.6em;
+`;
+
+const SwitchComponent = ({ label, value, setValue }) => {
+	return (
+		<div>
+			<SwitchInput
+				type="checkbox"
+				checked={value}
+				onChange={(e) => {
+					setValue(e.target.checked);
+				}}
+			/>
+			<SwitchLabel>{label}</SwitchLabel>
+		</div>
+	);
+};
+
 function Mapa() {
 	const { isLoaded } = useJsApiLoader({
 		id: "google-map-script",
@@ -106,45 +159,45 @@ function Mapa() {
 				<CheckBoxContainer>
 					<h2>Qual serviço deseja?</h2>
 					<p>Filtre por categoria</p>
-					<CheckBoxComponent
+					<SwitchComponent
 						label="Rampas de acesso"
 						value={ramp}
 						setValue={setRamp}
 					/>
-					<CheckBoxComponent
+					<SwitchComponent
 						label="Elevador"
 						value={elevator}
 						setValue={setElevator}
 					/>
-					<CheckBoxComponent
+					<SwitchComponent
 						label="Material em braile"
 						value={braileMaterial}
 						setValue={setBraileMaterial}
 					/>
-					<CheckBoxComponent
+					<SwitchComponent
 						label="Banheiros acessíveis"
 						value={accessibleRestrooms}
 						setValue={setAccessibleRestrooms}
 					/>
-					<CheckBoxComponent
+					<SwitchComponent
 						label="Estacionamento acessível"
 						value={accessibleParking}
 						setValue={setAccessibleParking}
 					/>
 				</CheckBoxContainer>
-				<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
+				<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={14}>
 					{/* Child components, such as markers, info windows, etc. */}
 					{/* Preciso marcar os locais no mapa, e ao clicar neles, deve aparecer um card com suas informações */}
 					{pontosSelecionados
 						? pontosSelecionados.map((local) => (
-							<MarkerF
-								key={local.id}
-								position={{ lat: local.lat, lng: local.lng }}
-								onClick={() => {
-									setSelectedLocal(local);
-								}}
-							/>
-						))
+								<MarkerF
+									key={local.id}
+									position={{ lat: local.lat, lng: local.lng }}
+									onClick={() => {
+										setSelectedLocal(local);
+									}}
+								/>
+						  ))
 						: null}
 					{selectedLocal && (
 						<InfoWindowF
@@ -156,7 +209,7 @@ function Mapa() {
 								setSelectedLocal(null);
 								console.log("Estou fechando");
 							}}
-						//Quando ele perder o foco, deve fechar a janela
+							//Quando ele perder o foco, deve fechar a janela
 						>
 							<PartnerCard
 								name={selectedLocal.name}
@@ -168,7 +221,6 @@ function Mapa() {
 
 					<></>
 				</GoogleMap>
-
 			</PageContainer>
 		</>
 	) : (
@@ -176,35 +228,35 @@ function Mapa() {
 	);
 }
 const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  @media (max-width: 800px) {
-	flex-direction: column;
-}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	@media (max-width: 800px) {
+		flex-direction: column;
+	}
 `;
 const CheckBoxContainer = styled.div`
-width: 40%;
-height: 90vh;
-border-right: solid 1px black;
-display: flex;
-flex-direction: column;
-aling-items: center;
-justify-content: center;
-padding: 0 30px;
-h2{
-	font-size: 40px
-}
-p{
-	color: #646464;
-	font-size: 20px
-}
-@media (max-width: 900px) {
-	width: 100%;
+	width: 40%;
+	height: 90vh;
+	border-right: solid 1px black;
+	display: flex;
 	flex-direction: column;
-	border-right: 0;
-	height: 30vh;
-}
-`
+	aling-items: center;
+	justify-content: center;
+	padding: 0 30px;
+	h2 {
+		font-size: 40px;
+	}
+	p {
+		color: #646464;
+		font-size: 20px;
+	}
+	@media (max-width: 900px) {
+		width: 100%;
+		flex-direction: column;
+		border-right: 0;
+		height: 30vh;
+	}
+`;
 export default Mapa;
