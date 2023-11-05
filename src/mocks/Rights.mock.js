@@ -2,7 +2,10 @@
 
 const rights = [
 	{
-		image: require("../imgs/img-restaurante.jpg"),
+		image: [
+			require("../imgs/img-restaurante.jpg"),
+			require("../imgs/img-bk.jpg"),
+		],
 		subtitle: "Restaurante",
 		legend: "Imagem de restaurante",
 		paragraph: "Esta empresa oferece o desconto de 10% para PCD.",

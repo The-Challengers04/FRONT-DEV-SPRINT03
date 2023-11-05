@@ -1,0 +1,31 @@
+.product-card .card {
+  margin: 10px;
+  width: 18rem;
+  box-shadow: -10px 10px 5px 1px rgb(198, 197, 197);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.product-card .card .carousel {
+  max-height: 200px;
+}
+.product-card .card .moreInformation {
+  width: 80%;
+  border-radius: 10px;
+  background-color: #55e5f6;
+  color: #fff;
+  border: 0;
+}
+.product-card .modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-card .modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product-card .modal .modal-body p {
+  margin: 20px 0;
+}/*# sourceMappingURL=style.css.map */
