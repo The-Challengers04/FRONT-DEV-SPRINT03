@@ -13,7 +13,7 @@ export const Image = styled.img`
 `;
 export const LegendBox = styled.div`
 	display: flex;
-	background-color: #4b4b4b;
+	background-color: ${(props) => (props.isClicked ? "#0555e5" : "#4b4b4b")};
 	height: 30%;
 	width: auto;
 	justify-content: center;

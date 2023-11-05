@@ -1,0 +1,38 @@
+.product-card {
+	.card {
+		margin: 10px;
+		width: 18rem;
+		box-shadow: -10px 10px 5px 1px rgb(198, 197, 197);
+
+		.carousel {
+			max-height: 200px;
+		}
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		.moreInformation {
+			width: 80%;
+			border-radius: 10px;
+			background-color: #55e5f6;
+			color: #fff;
+			border: 0;
+		}
+	}
+
+	// A modal deve aparecer centralizada no meio da tela do usuários
+	.modal {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.modal-body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			p {
+				margin: 20px 0;
+			}
+		}
+	}
+}

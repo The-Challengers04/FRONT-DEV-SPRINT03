@@ -1,0 +1,52 @@
+{
+	"teste": [
+		{
+			"id": 1,
+			"image": ["./imgs/img-restaurante.jpg"],
+			"subtitle": "Restaurante",
+			"legend": "Imagem de restaurante",
+			"tag": "restaurant",
+			"paragraph": "Esta empresa oferece o desconto de 10% para PCD."
+		},
+		{
+			"id": 2,
+			"image": "./imgs/img-bk.jpg",
+			"subtitle": "Burguer King",
+			"legend": "Imagem do Burguer King",
+			"tag": "restaurant",
+			"paragraph": "Esta empresa oferece o desconto 15% no cardápio para PCD."
+		},
+		{
+			"id": 3,
+			"image": "./imgs/img-livraria.jpg",
+			"subtitle": "LivreBook",
+			"legend": "Imagem de uma livraria",
+			"tag": "library",
+			"paragraph": "Esta empresa oferece o desconto de 10% para PCD."
+		},
+		{
+			"id": 4,
+			"image": "./imgs/img-restaurante02.jpg",
+			"subtitle": "Restaurante do Leo",
+			"legend": "Imagem de um restaurante",
+			"tag": "restaurant",
+			"paragraph": "Esta Esta empresa oferece o desconto 20% no cardápio"
+		},
+		{
+			"id": 5,
+			"image": "./imgs/img-estadio.jpg",
+			"subtitle": "Estádio do Morumbi",
+			"legend": "Imagem de um estádio",
+			"tag": "entertainment",
+			"paragraph": "Este estabelecimento oferece o desconto de 30% nos ingressos para PCD"
+		},
+		{
+			"id": 6,
+			"image": "./imgs/img-bares.jpg",
+			"subtitle": "Bar do Bom",
+			"legend": "Imagem de um bar",
+			"tag": "service",
+			"paragraph": "Este estabelecimento oferece descontos de 10% para PCD"
+		}
+	]
+}
