@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Input } from "../componentes/Forms";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import styled from "styled-components";
 import ImagemLogin from "../imgs/img-login-cad.jpg"
-import { ButtonLogin } from "../componentes/Buttons";
+import "../componentes/Buttons/sass.scss"
 import Logo from "../imgs/logo_inclui+.png";
 import { Link } from "../componentes/Link";
 // import Input from "../componentes/Input";
@@ -124,9 +124,9 @@ export function Login() {
 								errorName={"password"}
 							/>
 							<FormContainer>
-								<ButtonLogin variant="primary" type="submit">
+								<button className="button-login" variant="primary" type="submit">
 									Entrar
-								</ButtonLogin>
+								</button>
 							</FormContainer>
 
 						</Form>

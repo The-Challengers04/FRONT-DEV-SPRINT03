@@ -1,12 +1,12 @@
-import * as S from "./styles";
+import "./sass.scss"
 
 export default function CategoryCard({ image, subtitle, legend }) {
 	return (
-		<S.StyledCard>
-			<S.Image src={image} alt={legend} />
-			<S.LegendBox>
-				<S.Subtitle>{subtitle}</S.Subtitle>
-			</S.LegendBox>
-		</S.StyledCard>
+		<div className="styled-card">
+			<img className="image" src={image} alt={legend} />
+			<div className="legend-box">
+				<h2 className="subtitle">{subtitle}</h2>
+			</div>
+		</div>
 	);
 }

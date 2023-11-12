@@ -187,7 +187,6 @@ const PageContainer = styled.div`
 const CheckBoxContainer = styled.div`
 width: 40%;
 height: 90vh;
-border-right: solid 1px black;
 display: flex;
 flex-direction: column;
 aling-items: center;
@@ -204,7 +203,7 @@ p{
 	width: 100%;
 	flex-direction: column;
 	border-right: 0;
-	height: 30vh;
+	height: 350px;
 }
 `
 export default Mapa;

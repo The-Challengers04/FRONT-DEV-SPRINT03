@@ -13,6 +13,7 @@ export function Home() {
 	return (
 		<div>
 			<NavBar />
+			
 			<MainMenu text="Seja bem-vindo ao Inclui+" />
 
 			<Title title="Busque por categorias: " />

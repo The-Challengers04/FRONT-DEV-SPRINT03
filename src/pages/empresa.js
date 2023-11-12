@@ -15,7 +15,7 @@ export default function Empresa() {
 				<h1>Fazer da acessibilidade uma realidade para todos</h1>
 			</Menu>
 			<Title title={"Faça parte da mudança, seja nosso parceiro!"}/>
-			<Section1 >
+			<Section1>
 				<h1>
 					Seja nosso parceiro e mostre seu comprometimento com a inclusão,
 					divulgando as informações sobre os recursos de acessibilidade que sua
@@ -56,7 +56,7 @@ display: flex;
         height: 700px;
         background-size: cover;
 		h1 {
-			font-size: 3.5rem;
+			font-size: 3rem;
 			color: #ffffff;
 			margin: 0 30%
 		}
