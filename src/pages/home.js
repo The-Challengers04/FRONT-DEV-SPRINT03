@@ -19,18 +19,25 @@ export function Home() {
 	const [rights, setRights] = useState([]);
 
 	async function getProducts() {
-		let url = "http://localhost:8000/teste";
-		const filters = [];
-		if (restaurantFilter) filters.push("restaurant");
-		if (entertainmentFilter) filters.push("entertainment");
-		if (libraryFilter) filters.push("library");
-		if (serviceFilter) filters.push("service");
-		if (filters.length > 0) url += "?tag=" + filters.join(",");
-		console.log(url);
-		const response = await fetch(url);
-		const data = await response.json();
-		console.log(data);
-		setRights(data);
+		try {
+			let url = "http://localhost:8000/teste";
+			const filters = [];
+			if (restaurantFilter) filters.push("restaurant");
+			if (entertainmentFilter) filters.push("entertainment");
+			if (libraryFilter) filters.push("library");
+			if (serviceFilter) filters.push("service");
+			if (filters.length > 0) url += "?tag=" + filters.join(",");
+			const response = await fetch(url);
+			if (!response.ok) {
+				setRights([]);
+				return;
+			}
+			const data = await response.json();
+			setRights(data);
+		} catch (err) {
+			// Was not possible to fetch
+			setRights([]);
+		}
 	}
 
 	useEffect(() => {
@@ -107,14 +114,16 @@ export function Home() {
 			<Title title="Direitos em destaque!" />
 			<ProductCardGrid>
 				<ProductCardContainer>
-					{rights.map((card) => (
-						<ProductCard
-							key={card.id}
-							images={card.image}
-							title={card.subtitle}
-							description={card.paragraph}
-						/>
-					))}
+					{rights.length > 0
+						? rights.map((card) => (
+								<ProductCard
+									key={card.id}
+									images={card.image}
+									title={card.subtitle}
+									description={card.paragraph}
+								/>
+						  ))
+						: null}
 				</ProductCardContainer>
 			</ProductCardGrid>
 
