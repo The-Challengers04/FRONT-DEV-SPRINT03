@@ -1,43 +1,50 @@
-$border-radius: 4px;
+$card-border-radius: 4px;
 $card-width: 18rem;
 $card-height: 18rem;
-$margin-size: 15px;
-$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-$legend-background: #4b4b4b;
-$hover-background: #55e5f6;
-$text-color: #fff;
-$font-size: 1.6em;
+$card-margin: 15px;
+$card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
-.styled-card {
-  border-radius: $border-radius;
+$legend-box-hover-color: #55e5f6;
+$legend-box-default-color: #4b4b4b;
+$legend-box-clicked-color: #0555e5;
+
+$subtitle-text-color: #fff;
+$subtitle-font-size: 1.6em;
+
+.StyledCard {
+  border-radius: $card-border-radius;
   width: $card-width;
   height: $card-height;
-  margin: $margin-size;
-  box-shadow: $box-shadow;
+  margin: $card-margin;
+  box-shadow: $card-box-shadow;
+}
 
-  .image {
-    width: 100%;
-    height: 70%;
+.Image {
+  width: 100%;
+  height: 70%;
+}
+
+.LegendBox {
+  display: flex;
+  background-color: $legend-box-default-color;
+  height: 30%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    background-color: $legend-box-hover-color;
   }
 
-  .legend-box {
-    display: flex;
-    background-color: $legend-background;
-    height: 30%;
-    width: auto;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    &:hover {
-      background-color: $hover-background;
-    }
-
-    .subtitle {
-      color: $text-color;
-      font-size: $font-size;
-      text-decoration: none;
-      cursor: pointer;
-    }
+  &.isClicked {
+    background-color: $legend-box-clicked-color;
   }
+}
+
+.Subtitle {
+  color: $subtitle-text-color;
+  font-size: $subtitle-font-size;
+  text-decoration: none;
+  cursor: pointer;
 }
