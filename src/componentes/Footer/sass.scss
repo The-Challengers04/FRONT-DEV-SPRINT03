@@ -1,0 +1,56 @@
+$background-color: black;
+$padding-size: 20px;
+$text-color: var(--cor-branca);
+$font-color-text: var(--cor-fonte-text);
+$link-color: var(--cor-fonte-text);
+
+.footer {
+  background-color: $background-color;
+  padding: $padding-size;
+  color: $text-color;
+
+  .logo-image {
+    width: 220px;
+    height: 170px;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .section {
+      margin-bottom: 20px;
+
+      .text {
+        margin-bottom: 10px;
+      }
+
+      .paragraph {
+        color: $font-color-text;
+      }
+
+      .ul {
+        list-style: none;
+        padding: 0;
+
+        .li {
+          margin-bottom: 5px;
+          color: $font-color-text;
+          text-decoration: none;
+
+          a {
+            color: $link-color;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  .copy {
+    text-align: center;
+    margin-top: 20px;
+    color: $font-color-text;
+  }
+}

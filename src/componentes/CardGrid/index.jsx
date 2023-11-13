@@ -1,5 +1,4 @@
-import * as S from "./styles";
-
+import "./sass.scss"
 export default function CardGrid({ children }) {
-	return <S.CardGrid>{children}</S.CardGrid>;
+	return <div className="card-grid">{children}</div>;
 }

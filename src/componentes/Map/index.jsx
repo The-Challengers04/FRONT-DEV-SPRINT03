@@ -237,26 +237,25 @@ const PageContainer = styled.div`
 	}
 `;
 const CheckBoxContainer = styled.div`
-	width: 40%;
-	height: 90vh;
-	border-right: solid 1px black;
-	display: flex;
+width: 40%;
+height: 90vh;
+display: flex;
+flex-direction: column;
+aling-items: center;
+justify-content: center;
+padding: 0 30px;
+h2{
+	font-size: 40px
+}
+p{
+	color: #646464;
+	font-size: 20px
+}
+@media (max-width: 900px) {
+	width: 100%;
 	flex-direction: column;
-	aling-items: center;
-	justify-content: center;
-	padding: 0 30px;
-	h2 {
-		font-size: 40px;
-	}
-	p {
-		color: #646464;
-		font-size: 20px;
-	}
-	@media (max-width: 900px) {
-		width: 100%;
-		flex-direction: column;
-		border-right: 0;
-		height: 30vh;
-	}
-`;
+	border-right: 0;
+	height: 350px;
+}
+`
 export default Mapa;

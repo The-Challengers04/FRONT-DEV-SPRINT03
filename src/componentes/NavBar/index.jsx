@@ -3,23 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../../imgs/logo_inclui+.png";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import "../Buttons/sass.scss"
 import "./nav.css";
-
-const ButtonLogin = styled.button`
-color: #55e5f6;
-padding: 7px 15px;
-font-size: 1.1em;
-cursor: pointer;
-background: #FFFFFF;
-border: 2px solid #55E5F6;
-border-radius: 5px;
-&:hover {
-	background: #55e5f6;
-	color: #FFFFFF;
-  }
-`;
-
 
 function BasicExample() {
 	const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
@@ -43,11 +28,11 @@ function BasicExample() {
 						{loggedUser ? (
 							<Link to="/profile" className="nav-link">
 								{/* // Quero que seja um botao */}
-								<ButtonLogin className="btn">Perfil</ButtonLogin>
+								<button className="button-login">Perfil</button>
 							</Link>
 						) : (
 							<Link to="/login" className="nav-link">
-								<ButtonLogin className="btn">Entrar</ButtonLogin>
+								<button className="button-login">Entrar</button>
 							</Link>
 						)}
 					</Nav>

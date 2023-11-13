@@ -1,15 +1,15 @@
 import { memo } from "react";
-import * as S from "./styles";
+import "./sass.scss";
 
 function CategoryCard({ image, subtitle, legend, value, setValue }) {
-	return (
-		<S.StyledCard onClick={() => setValue(!value)}>
-			<S.Image src={image} alt={legend} />
-			<S.LegendBox isClicked={value}>
-				<S.Subtitle>{subtitle}</S.Subtitle>
-			</S.LegendBox>
-		</S.StyledCard>
-	);
+  return (
+    <div className="StyledCard" onClick={() => setValue(!value)}>
+      <img className="Image" src={image} alt={legend} />
+      <div className={`LegendBox ${value ? "isClicked" : ""}`}>
+        <h2 className="Subtitle">{subtitle}</h2>
+      </div>
+    </div>
+  );
 }
 
 export default memo(CategoryCard);

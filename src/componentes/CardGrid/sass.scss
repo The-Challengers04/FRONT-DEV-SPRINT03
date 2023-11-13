@@ -1,0 +1,9 @@
+$margin-size: 50px;
+
+.card-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: $margin-size;
+}

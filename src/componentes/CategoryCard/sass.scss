@@ -1,0 +1,50 @@
+$card-border-radius: 4px;
+$card-width: 18rem;
+$card-height: 18rem;
+$card-margin: 15px;
+$card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+$legend-box-hover-color: #55e5f6;
+$legend-box-default-color: #4b4b4b;
+$legend-box-clicked-color: #0555e5;
+
+$subtitle-text-color: #fff;
+$subtitle-font-size: 1.6em;
+
+.StyledCard {
+  border-radius: $card-border-radius;
+  width: $card-width;
+  height: $card-height;
+  margin: $card-margin;
+  box-shadow: $card-box-shadow;
+}
+
+.Image {
+  width: 100%;
+  height: 70%;
+}
+
+.LegendBox {
+  display: flex;
+  background-color: $legend-box-default-color;
+  height: 30%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    background-color: $legend-box-hover-color;
+  }
+
+  &.isClicked {
+    background-color: $legend-box-clicked-color;
+  }
+}
+
+.Subtitle {
+  color: $subtitle-text-color;
+  font-size: $subtitle-font-size;
+  text-decoration: none;
+  cursor: pointer;
+}
