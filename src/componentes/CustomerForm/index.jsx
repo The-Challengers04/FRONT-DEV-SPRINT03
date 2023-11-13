@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Input } from "../Forms";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { ButtonLogin } from "../../componentes/Buttons";
 
 function isValidEmail(email) {
